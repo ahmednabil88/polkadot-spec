@@ -4,7 +4,7 @@ APPENDICES := $(wildcard a?-*.tm)
 
 FIGURES    := $(wildcard figures/*.eps) $(wildcard figures/*.puml) $(wildcard figures/*.svg)
 
-GENERATED  := figures/c07-overview.eps
+GENERATED  := figures/c07-overview.eps figures/c08-message_queue_chain.eps figures/c08-overview.eps figures/c08-xcmp_overview.eps
 
 SOURCES    := host-spec.tm $(CHAPTERS) $(APPENDICES) $(FIGURES) $(GENERATED)
 
@@ -21,6 +21,16 @@ tex: polkadot-host-spec.tex
 diff: polkadot-host-spec.diff.pdf
 
 temp: $(GENERATED)
+
+
+figures/c08-message_queue_chain.eps: figures/c08-message_queue_chain.svg
+	inkscape $< --export-filename=$@ --export-overwrite
+
+figures/c08-overview.eps: figures/c08-overview.svg
+	inkscape $< --export-filename=$@ --export-overwrite
+
+figures/c08-xcmp_overview.eps: figures/c08-xcmp_overview.svg
+	inkscape $< --export-filename=$@ --export-overwrite
 
 
 figures/c07-overview.eps: figures/c07-overview.puml
